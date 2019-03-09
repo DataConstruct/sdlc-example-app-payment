@@ -117,6 +117,7 @@ namespace Payment.API
 
         private void RegisterAppInsights(IServiceCollection services)
         {
+            services.AddSingleton<ITelemetryInitializer>(new CloudRoleNameInitializer("payment"));
             services.AddApplicationInsightsTelemetry(Configuration);
             var orchestratorType = Configuration.GetValue<string>("OrchestratorType");
 
